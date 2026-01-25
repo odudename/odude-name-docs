@@ -1,47 +1,72 @@
-import { Bleed } from 'nextra/components'
+import { Button } from '@mantine/core';
+import { Callout, FileTree, Steps } from 'nextra/components'
+import { FileTreeLabel } from '@/components/FileTreeLabel'
 
-# Odude Documentation
+# Introduction
 
-<p className="text-lg text-gray-600 dark:text-gray-400 mt-2">
-  The comprehensive guide to Odude tools, APIs, and community projects.
-</p>
+Hello, world!
+Welcome to the Nextra + Mantine template.
 
-<div className="mt-8 flex gap-4">
-  <a href="/docs" className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-all">
-    Get Started
-  </a>
-  <a href="https://github.com/odude" target="_blank" className="inline-flex items-center justify-center rounded-xl bg-white dark:bg-zinc-800 px-6 py-3 text-sm font-semibold text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-700 transition-all">
-    View on GitHub
-  </a>
-</div>
+This is a starter template for [Next.js](https://nextjs.org/) app router + [Mantine](https://mantine.dev/) + [Nextra](https://nextra.site/) documentation site.
 
-<Bleed>
-  <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-    <div className="rounded-2xl border border-gray-200 dark:border-zinc-800 p-8 hover:border-blue-500 transition-colors">
-      <h3 className="text-lg font-semibold">🚀 High Performance</h3>
-      <p className="mt-4 text-sm text-gray-600 dark:text-gray-400 line-height-relaxed">
-        Built with Next.js 15 and Nextra 4 for blazing fast documentation that feels like a native app.
-      </p>
-    </div>
-    <div className="rounded-2xl border border-gray-200 dark:border-zinc-800 p-8 hover:border-blue-500 transition-colors">
-      <h3 className="text-lg font-semibold">🔍 Full Text Search</h3>
-      <p className="mt-4 text-sm text-gray-600 dark:text-gray-400 line-height-relaxed">
-        Powered by Pagefind for instant, accurate search results across all your pages.
-      </p>
-    </div>
-    <div className="rounded-2xl border border-gray-200 dark:border-zinc-800 p-8 hover:border-blue-500 transition-colors">
-      <h3 className="text-lg font-semibold">💅 Modern UI</h3>
-      <p className="mt-4 text-sm text-gray-600 dark:text-gray-400 line-height-relaxed">
-        Clean, accessible, and beautiful design with built-in dark mode and mobile responsiveness.
-      </p>
-    </div>
-  </div>
-</Bleed>
+## Features
 
-## Documentation Structure
+This template comes with the following features:
 
-Our docs are organized into several key areas to help you find what you need quickly:
+- [PostCSS](https://postcss.org/) with [mantine-postcss-preset](https://mantine.dev/styles/postcss-preset)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Storybook](https://storybook.js.org/)
+- [Jest](https://jestjs.io/) setup with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
+- ESLint setup with [eslint-config-mantine](https://github.com/mantinedev/eslint-config-mantine)
+- Provides API example in `/api/version`
 
-- **[Guides](/docs/guides)**: Detailed walkthroughs for common workflows.
-- **[API Reference](/docs/api)**: Technical specifications for our interfaces.
-- **[Community](/docs/community)**: Resources and shared knowledge.
+## Nextra Features
+
+- [Nextra](https://nextra.site/) documentation site with Mantine theme
+- Sync Dark mode between documentation and application (Mantine/Nextra)
+- Customizable components in `components` folder
+- Provides new Navigation and Footer components for Nextra documentation site
+
+## Folder structure
+
+You will find a lot of predefined folders and files in the project. Here is a short description of the most important ones:
+
+<FileTree>
+  <FileTree.Folder name="app" defaultOpen>
+      <FileTree.Folder name={<FileTreeLabel type="folder" name="api">Useful API</FileTreeLabel>} defaultOpen />
+          <FileTree.File name={<FileTreeLabel type="file" name="layout.tsx">Main layout</FileTreeLabel>} />
+      <FileTree.File name={<FileTreeLabel type="file" name="page.tsx">Homepage</FileTreeLabel>} />
+  </FileTree.Folder>
+  <FileTree.Folder name={<FileTreeLabel type="folder" name="components">Useful components</FileTreeLabel>} defaultOpen />
+  <FileTree.Folder name="config" defaultOpen>
+    <FileTree.File name={<FileTreeLabel type="file" name="index.ts">Most of the config are here!</FileTreeLabel>} />
+  </FileTree.Folder>
+  <FileTree.Folder name={<FileTreeLabel type="folder" name="content">MDX docs</FileTreeLabel>} defaultOpen />
+</FileTree>
+
+You can start by changing the main configuration in `config/index.ts` file. This file contains the most important configuration for the project.
+
+
+
+## npm scripts
+
+### Build and dev scripts
+
+- `dev` – start dev server
+- `build` – bundle application for production
+- `analyze` – analyzes application bundle with [@next/bundle-analyzer](https://www.npmjs.com/package/@next/bundle-analyzer)
+
+### Testing scripts
+
+- `typecheck` – checks TypeScript types
+- `lint` – runs ESLint
+- `prettier:check` – checks files with Prettier
+- `jest` – runs jest tests
+- `jest:watch` – starts jest watch
+- `test` – runs `jest`, `prettier:check`, `lint` and `typecheck` scripts
+
+### Other scripts
+
+- `storybook` – starts storybook dev server
+- `storybook:build` – build production storybook bundle to `storybook-static`
+- `prettier:write` – formats all files with Prettier
