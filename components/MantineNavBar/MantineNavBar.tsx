@@ -2,6 +2,7 @@
 
 import { Navbar } from 'nextra-theme-docs';
 import { Group, Text, Button } from '@mantine/core';
+import { IconBrandX } from '@tabler/icons-react';
 import { ColorSchemeControl } from '../ColorSchemeControl/ColorSchemeControl';
 import { Logo } from '../Logo/Logo';
 import { MantineNextraThemeObserver } from '../MantineNextraThemeObserver/MantineNextraThemeObserver';
@@ -25,8 +26,9 @@ export const MantineNavBar = () => {
             </Text>
           </Group>
         }
-        // Mantine discord server
-        chatLink="https://discord.com/invite/wbH82zuWMN"
+        // Odude X (Twitter)
+        chatLink="https://x.com/odudehq"
+        chatIcon={<IconBrandX size={18} />}
         projectLink="https://github.com/gfazioli/next-app-nextra-template"
       >
         <>
