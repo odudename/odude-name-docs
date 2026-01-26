@@ -1,168 +1,48 @@
-# API
+# API Overview
 
-This starter kit provides a simple API for managing the state of the application. The API is designed to be easy to use and understand, while also being powerful enough to handle complex use cases.
+Welcome to the Odude API documentation. Our APIs provide 3rd-party developers with the tools to integrate Odude profile data and identity verification into their own applications.
 
-> [!TIP]
->
-> You can find all the API routes in the `app/api` folder. The API is built using [Next.js](https://nextjs.org/) and is designed to be easy to use and understand.
+Whether you're building a social platform, a portfolio site, or an authentication service, our structured APIs make it seamless to access and verify Odude user information.
 
-## Pagefind API
+## Available APIs
 
-Starting with Nextra v4, the search engine is built-in and uses [Pagefind](https://pagefind.app/). Unfortunately, the Pagefind API is only available on the client side, from the browser.
+We currently offer two primary API endpoints for developers:
 
-> In this starter kit, we use a simple trick to make it work on the server side 👏 
+### 1. Profile Public API
+The **Profile Public API** allows you to retrieve comprehensive public data for any Odude ID. This includes display names, avatars, social links, cryptocurrency addresses, and custom featured links.
 
-You can try the API url [here](/api/search?q=mantine)
+*   **Best for**: Displaying user profiles, building directories, and integrating social metadata.
+*   **Response**: Structured JSON containing attributes and records.
+*   **Documentation**: [View Profile Public API Details](./api/profile)
 
-### Default route
+### 2. Owner Check API
+The **Owner Check API** is designed for identity verification. It allows your application to programmatically verify if a specific email address is the verified owner or creator of an Odude name.
 
-The default URL is exposed at `https://your-site.com/api/search`.
+*   **Best for**: "Sign In with Odude" implementations, ownership verification, and secure integrations.
+*   **Response**: Boolean verification status (`hasCreated`).
+*   **Documentation**: [View Owner Check API Details](./api/owner)
 
-### Config
+---
 
-The API accepts the following query parameters:
+## Getting Started
 
-- `q`: The search query.
-- `limit`: The number of results to return per page (default: 5).
-- `excerptLength`: The length of the excerpt to return (default: 30).
+To begin using the Odude APIs, you can start making requests directly to our endpoints. All responses are returned in JSON format.
 
-Anyway, you can change the default values in the `config/index.ts` file:
+### Base URL
+All API requests should be made to:
+`https://name.odude.com/api`
 
-```ts filename="config/index.ts"
-...
-  /**
-   * Search configuration (for pagefind)
-   * This is used to configure the search engine API.
-   * @see /app/api/search/route.ts
-   */
-  search: {
-    queryKeyword: 'q',
-    minQueryLength: 3,
-    limitKeyword: 'limit',
-    defaultMaxResults: 5,
-    excerptLengthKeyword: 'excerptLength',
-    defaultExcerptLength: 30,
-    defaultLanguage: 'en',
-  },
-...
-```
+### Content Type
+The API returns data in `application/json` format. Please ensure your application is configured to handle JSON responses.
 
-### JSON response
+## Professional Use Cases
 
-Currently, the API returns a JSON response with the following structure:
+*   **Web3 Integrations**: Fetch verified cryptocurrency addresses for smooth tipping or transaction flows.
+*   **Cross-Platform Portfolios**: Pull "Featured Links" and "Notes" to display a unified social presence.
+*   **Community Verification**: Use the Owner Check API to grant special permissions in Discord servers or private forums based on Odude ownership.
 
-```json
-[
-  {
-    "title": "Main Page title",
-    "content": "Some content",
-    "items": [
-      {
-        "title": "Sub Paragraph title",
-        "url": "http://yoursite.com/docs/your-docs",
-        "excerpt": "<mark>Mantine</mark> Components. Here you may use the <mark>Mantine</mark> components: Hello, world!"
-      }
-    ]
-  },
-  ...
-]
-```
+---
 
-In TypeScript, the response is typed as follows:
+## Support & Integration
 
-```ts
-interface Item {
-  title: string;
-  url: string;
-  excerpt: string;
-}
-
-interface Content {
-  title: string;
-  content: string;
-  items: Item[];
-}
-
-type Contents = Content[];
-```
-
-## GitHub Release API
-
-The GitHub Release API is a simple API that allows you to get the latest release of a GitHub repository. It is designed to be easy to use and understand, while also being powerful enough to handle complex use cases.
-
-Have a look at the [Release Notes](/docs/release-notes) page to see how to use it.
-
-### Default route
-
-The default URL is exposed at `https://your-site.com/api/github-releases`.
-
-### Config
-
-You may configure the API in the `config/index.ts` file:
-
-```ts filename="config/index.ts"
-  /**
-   * GitHub API configuration
-   * @see https://docs.github.com/en/rest/reference/repos#releases
-   *
-   * The GitHub API token is optional for rate limiting.
-   * If you want to use it, create a personal access token with the `repo` scope.
-   *
-   * This information is used to fetch the releases from the GitHub API.
-   */
-  gitHub: {
-    repo: 'gfazioli/next-app-nextra-template',
-    apiUrl: 'https://api.github.com',
-    releasesUrl: 'https://api.github.com/repos/gfazioli/next-app-nextra-template/releases',
-  },
-
-...
-  /**
-   * Release notes configuration
-   * This is used to link the release notes in the app.
-   */
-  releaseNotes: {
-    url: 'https://github.com/gfazioli/next-app-nextra-template/releases',
-    maxReleases: 10,
-  },
-  ...
-```
-
-### Rate limiting
-
-The GitHub API has a rate limit of 60 requests per hour for unauthenticated requests. If you want to increase the rate limit, you can create a personal access token with the `repo` scope and add it to the `GITHUB_TOKEN` environment variable.
-
-You have to update `components/ReleaseNotes/release-notes-toc.ts`
-
-```ts {6} filename="components/ReleaseNotes/release-notes-toc.ts" copy
-...
-    const releases = await fetcher(
-      `${config.gitHub.releasesUrl}?per_page=${config.releaseNotes.maxReleases}`
-      // {
-      //   headers: {
-      //     Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-      //   },
-      // }
-    ).catch((error) => {
-      // eslint-disable-next-line no-console
-      console.error('Error fetching releases:', error);
-      throw error;
-    });
-...
-```
-
-and `app/api/github-releases/route.ts`
-
-```ts {7}
-...
-    const response = await fetch(
-      `${config.gitHub.releasesUrl}?per_page=${config.releaseNotes.maxReleases}`,
-      {
-        headers: {
-          Accept: 'application/vnd.github+json',
-          // Authorization: `Bearer ${process.env.GITHUB_TOKEN}`, // Optional for rate limit
-        },
-      }
-    );
-...
-```    
+If you have questions regarding rate limits, specific data fields, or enterprise-grade integration requirements, please reach out to our [Developer Support Team](mailto:support@odude.com).
