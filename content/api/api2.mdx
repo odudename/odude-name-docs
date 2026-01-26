@@ -1,0 +1,76 @@
+# Owner Check API
+
+This API endpoint allows 3rd party developers to verify if a specific email address owns or created a particular Odude name (e.g., `demo@me`). This is useful for authentication, authorization, or verifying identity across external applications.
+
+## Endpoint
+
+```
+GET https://name.odude.com/api/owner-check
+```
+
+## Query Parameters
+
+| Parameter | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| `email` | string | Yes | The email address to check for ownership. |
+| `name` | string | Yes | The Odude name to verify (e.g., `user@domain`). |
+
+## Request Example
+
+```bash
+curl "https://name.odude.com/api/owner-check?email=test@gmail.com&name=demo@me"
+```
+
+## Response Format
+
+The API returns a JSON object indicating whether the email is the verified owner or creator of the name.
+
+### Success Response (Owner Found)
+
+```json
+{
+  "hasCreated": true,
+  "email": "test@gmail.com",
+  "name": "demo@me"
+}
+```
+
+### Success Response (Not Owner)
+
+```json
+{
+  "hasCreated": false,
+  "email": "test@gmail.com",
+  "name": "demo@me"
+}
+```
+
+### Error Response (Invalid Parameters)
+
+```json
+{
+  "error": "Both email and name parameters are required"
+}
+```
+
+## Ownership Logic
+
+A user is considered the "owner" if they meet **either** of the following criteria:
+1. **Namespace Owner**: They own the Top Level Name (the domain part after the `@`).
+2. **Specific Creator**: They are the specific individual who created the Odude name (the `profile_email` matches).
+
+## Security & Rate Limiting
+
+- **Rate Limiting**: To ensure service stability, this endpoint is rate-limited (typically 10 requests per minute per IP).
+- **Sanitization**: All inputs are sanitized to prevent injection attacks.
+- **Validation**: The API validates that the `email` is in a correct format and the `name` follows the `name@domain` structure.
+
+## Integration Tips
+
+1. **Authentication**: Use this API to allow users to "Sign In with Odude" by verifying they control the Odude name they claim to own.
+2. **Verification**: When displaying an Odude ID in your app, you can use this endpoint to add a "Verified" badge if the logged-in user's email matches the name owner.
+3. **Case Sensitivity**: The API handles case-insensitive comparisons for both emails and names for consistent results.
+
+## Support
+
+For further assistance with API integration, please contact the Odude developer support team.

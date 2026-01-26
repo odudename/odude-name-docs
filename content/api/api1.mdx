@@ -1,0 +1,164 @@
+# Profile Public API
+
+This API endpoint allows 3rd party developers to retrieve public profile data for any Odude ID. The data is returned in a structured JSON format, making it easy to integrate Odude profiles into external applications.
+
+## Endpoint
+
+```
+GET https://name.odude.com/api/{odude_id}
+```
+
+Replace `{odude_id}` with the specific Odude ID you wish to query (e.g., `demo@me`).
+
+## Request Example
+
+```bash
+curl https://name.odude.com/api/demo@me
+```
+
+## Response Format
+
+The API returns a JSON object containing the profile's basic information, attributes, and detailed records.
+
+### Example Response
+
+```json
+{
+  "name": "demo@me",
+  "description": "This is a demo account showcasing how an Odude profile looks.",
+  "image": "https://storage.googleapis.com/odudename.appspot.com/demo@me.jpg",
+  "attributes": [
+    {
+      "trait_type": "domain",
+      "value": "demo@me"
+    },
+    {
+      "trait_type": "level",
+      "value": 2
+    },
+    {
+      "trait_type": "length",
+      "value": 7
+    }
+  ],
+  "records": {
+    "1": {
+      "type": "name",
+      "value": "Demo Account"
+    },
+    "2": {
+      "type": "email",
+      "value": "demo@email.com"
+    },
+    "3": {
+      "type": "website",
+      "value": "https://yoursite.com"
+    },
+    "4": {
+      "type": "phone",
+      "value": "+12334567910,+15544662299"
+    },
+    "5": {
+      "type": "tg_bot",
+      "value": ""
+    },
+    "6": {
+      "type": "social",
+      "value": {
+        "tiktok": "tiktok",
+        "discord": "discord",
+        "twitter": "twitter",
+        "youtube": "youtube",
+        "facebook": "fb",
+        "linkedin": "linkedin",
+        "telegram": "telegram",
+        "instagram": "insta"
+      }
+    },
+    "7": {
+      "type": "link",
+      "value": {
+        "Link No.1": "https://link1.com",
+        "Link No.2": "https://link2.com"
+      }
+    },
+    "8": {
+      "type": "crypto",
+      "value": {
+        "btc": "bc1qx4qym8fxemdsc6s67y9gnnzh6a83q8mueclj8a",
+        "eth": "0x68DAe1a6168a124Bc7F41a2Da924290085a678F8",
+        "sol": "HhQ1EsQ4eNFS2zhbGcvEgAV7rK9nna3RwcNfSVL2szhb"
+      }
+    },
+    "9": {
+      "type": "notes",
+      "value": {
+        "Note No.1": "This document contains sample notes and may include bank details.",
+        "Note No.2": "1234 Lone Star Ave, Austin, TX 78701, USA"
+      }
+    },
+    "20": {
+      "type": "img",
+      "value": {
+        "img1": "https://storage.odude.com/images/img1_demo@me_1767345793157.png",
+        "img2": "https://storage.odude.com/images/img2_demo@me_1767345814410.png"
+      }
+    },
+    "50": {
+      "type": "web_url",
+      "value": "https://name.odude.com/profile/demo@me"
+    },
+    "51": {
+      "type": "web3_url",
+      "value": ""
+    }
+  }
+}
+```
+
+## Data Schema
+
+### Root Fields
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `name` | string | The unique Odude ID (e.g., `user@me`). |
+| `description` | string | A short biography or description of the profile. |
+| `image` | string | URL to the profile's primary avatar image. |
+| `attributes` | array | Metadata traits (e.g., domain name, account level). |
+| `records` | object | Comprehensive dictionary of user-defined records, indexed by numeric IDs. |
+
+### Attributes Example
+Attributes follow the standard NFT metadata format:
+- `trait_type`: The category of metadata (e.g., `level`, `length`).
+- `value`: The actual value for that trait.
+
+### Records Breakdown
+The `records` object is a dictionary where each entry contains a `type` and a `value`. **Developers should iterate through the records and look for the specific `type` string** (e.g., `"type": "social"`) rather than relying on the numeric keys, as those keys may vary or change in the future.
+
+| Type | Description |
+| :--- | :--- |
+| `name` | The display name of the user. |
+| `email` | Contact email address. |
+| `website` | Personal or professional website URL. |
+| `phone` | Comma-separated list of phone numbers. |
+| `tg_bot` | Telegram Bot username/link. |
+| `social` | Object containing social media handles (TikTok, Discord, Twitter, etc.). |
+| `link` | Object containing custom "Featured Links" with labels. |
+| `crypto` | Object containing cryptocurrency wallet addresses (BTC, ETH, SOL). |
+| `notes` | Object containing custom text notes or addresses. |
+| `img` | Object containing additional profile gallery images. |
+| `web_url` | Direct URL to the Odude profile web page. |
+| `web3_url` | URL to the Web3 version of the profile (if available). |
+
+## Integration Tips
+
+1. **Locating Data**: Always search for data by its `type` field within the `records` object. For example, to find social media links, find the record where `"type": "social"`.
+2. **Caching**: Since profile data doesn't change every second, it's recommended to cache the response for a few minutes to improve your app's performance.
+3. **Social Icons**: Use the keys in the `social` record value object to map to your application's social icons.
+4. **Image Fallbacks**: If the `image` field is empty or fails to load, consider using a default placeholder avatar.
+5. **Phone Numbers**: The `phone` type returns a comma-separated string. You may need to `split(',')` it to display individual numbers.
+
+## Support
+
+For further assistance with API integration, please contact the Odude developer support team.

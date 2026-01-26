@@ -5,7 +5,7 @@ export default {
   },
   markdown: '',
   mantine: '',
-  api: '',
+  api: 'API',
 
   '###': {
     type: 'separator',
@@ -16,5 +16,7 @@ export default {
       toc: false,
     },
   },
-  'release-notes': '',
+  'release-notes': {
+    display: 'hidden'
+  },
 };
