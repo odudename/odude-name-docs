@@ -39,14 +39,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <MantineProvider theme={theme} defaultColorScheme={head.mantine.defaultColorScheme}>
           <Layout
             banner={
-              <Banner storageKey={`release-notes-${pack.version}`}>
+              <Banner storageKey={`release-notes-${pack.version}`} key="banner">
                 ✨ v{pack.version} ODude
               </Banner>
             }
-            navbar={<MantineNavBar />}
+            navbar={<MantineNavBar key="navbar" />}
             pageMap={pageMap}
             docsRepositoryBase={nextraLayout.docsRepositoryBase}
-            footer={<MantineFooter />}
+            footer={<MantineFooter key="footer" />}
             sidebar={nextraLayout.sidebar}
           >
             {children}
