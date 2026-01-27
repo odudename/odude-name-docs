@@ -1,22 +1,9 @@
 export default {
   index: 'Introduction',
-  '##': {
-    type: 'separator',
-  },
-  markdown: '',
-  mantine: '',
-  api: 'API',
-
-  '###': {
-    type: 'separator',
-    // title: 'My Items', // Title is optional
-  },
-  versioning: {
-    theme: {
-      toc: false,
-    },
-  },
-  'release-notes': {
-    display: 'hidden'
-  },
-};
+  names: 'Odude Names',
+  marketplace: 'Marketplace',
+  points: 'Points',
+  assets: 'Assets',
+  bookmarks: 'Bookmarks',
+  api: 'API References',
+}

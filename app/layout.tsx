@@ -40,8 +40,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <Layout
             banner={
               <Banner storageKey={`release-notes-${pack.version}`}>
-                ✨ v{pack.version} Released -{' '}
-                <a href="/docs/release-notes">See the release notes</a>
+                ✨ v{pack.version} ODude
               </Banner>
             }
             navbar={<MantineNavBar />}

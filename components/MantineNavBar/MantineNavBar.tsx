@@ -29,7 +29,7 @@ export const MantineNavBar = () => {
         // Odude X (Twitter)
         chatLink="https://x.com/odudehq"
         chatIcon={<IconBrandX size={18} />}
-        projectLink="https://github.com/gfazioli/next-app-nextra-template"
+        projectLink="https://github.com/odudename"
       >
         <>
           <ColorSchemeControl />
