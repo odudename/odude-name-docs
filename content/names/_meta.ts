@@ -1,5 +1,5 @@
 export default {
-    index: 'About Names',
+    index: 'About Odude Names',
     create: 'Registering a Name',
-    manage: 'Managing Names'
+    manage: 'Managing Your Names'
 }
