@@ -26,9 +26,7 @@ export const MantineNavBar = () => {
       logo={
         <Group align="center" gap={4}>
           <Logo />
-          <Text size="lg" fw={800} c="blue" visibleFrom="xl">
-            Odude Docs
-          </Text>
+
         </Group>
       }
       // Odude X (Twitter)

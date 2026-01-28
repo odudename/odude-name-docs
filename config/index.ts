@@ -5,30 +5,26 @@ export default {
    */
   metadata: {
     title: {
-      default: 'Mantine Next.js and Nextra template',
-      template: '%s | Mantine Next.js and Nextra template',
+      default: 'ODude Documentation',
+      template: '%s | ODude Documentation',
     },
-    description: 'I am using Mantine with Next.js and Nextra!',
+    description: 'ODude Documentation',
     metadataBase: new URL('https://next-app-nextra-template.vercel.app/'),
     keywords: [
-      'Mantine',
-      'Nextra',
-      'Next.js',
-      'React',
-      'JavaScript',
-      'MDX',
-      'Markdown',
-      'Static Site Generator',
+      'ODude',
+      'Documentation',
+      'Digital identity',
+      'ODude name',
     ],
     generator: 'Next.js',
-    applicationName: 'Mantine',
+    applicationName: 'ODude Documentation',
     appleWebApp: {
-      title: 'Mantine',
+      title: 'ODude Documentation',
     },
     openGraph: {
       // https://github.com/vercel/next.js/discussions/50189#discussioncomment-10826632
       url: './',
-      siteName: 'Mantine',
+      siteName: 'ODude Documentation',
       locale: 'en_US',
       type: 'website',
     },
