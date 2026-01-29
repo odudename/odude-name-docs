@@ -1,3 +1,5 @@
 export default {
-    index: 'Using Bookmarks'
+    index: 'What are Bookmarks?',
+    manage: 'Manage Bookmarks'
 }
+

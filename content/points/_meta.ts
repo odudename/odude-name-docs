@@ -1,4 +1,4 @@
 export default {
     index: 'Overview',
-    rewards: 'Rewards'
+    manage: 'Manage'
 }

@@ -1,4 +1,6 @@
 export default {
     index: 'Overview',
-    trading: 'Trading & Security'
+    seller: 'Seller Dashboard',
+    create: 'Create Listing',
+    order: 'Order Management'
 }
